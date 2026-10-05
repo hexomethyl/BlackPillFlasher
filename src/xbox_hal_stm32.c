@@ -27,14 +27,14 @@
 // PB14 SPI2_MISO      AF5, input with internal pull-up
 // PB15 SPI2_MOSI      AF5
 // PB10 SMC_DBG_EN     output, idle low
-// PB11 SMC_RST_XDK_N  output, idle high
+// PB1  SMC_RST_XDK_N  output, idle high
 
 #define SPI_SS_N_PIN      GPIO_PIN_12
 #define SPI_SCK_PIN       GPIO_PIN_13
 #define SPI_MISO_PIN      GPIO_PIN_14
 #define SPI_MOSI_PIN      GPIO_PIN_15
 #define SMC_DBG_EN_PIN    GPIO_PIN_10
-#define SMC_RST_XDK_N_PIN GPIO_PIN_11
+#define SMC_RST_XDK_N_PIN GPIO_PIN_1
 
 // SPI2 hangs off APB1 (42 MHz after the BSP clock init).  Prescaler 2 gives
 // a 21 MHz SCK: the RP2040 build asks spi_init() for 28 MHz but its clock

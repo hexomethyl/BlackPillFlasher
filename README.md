@@ -15,25 +15,37 @@ unaffected and builds separately.
 
 ## Wiring
 
-| Black Pill pin | Function | Xbox 360 signal |
+View the board component-side with the USB-C connector at the top. `Left` and
+`right` below refer to that orientation; each entry gives the header position,
+board silk, and MCU GPIO.
+
+| Black Pill connection | Function | Xbox 360 signal |
 |---|---|---|
-| PB12 | SPI_SS_N (GPIO, manual chip select) | SPI_SS_N |
-| PB13 | SPI2_SCK | SPI_CLK |
-| PB14 | SPI2_MISO (input, internal pull-up) | SPI_MISO |
-| PB15 | SPI2_MOSI | SPI_MOSI |
-| PB10 | SMC_DBG_EN (GPIO out) | SMC_DBG_EN |
-| PB11 | SMC_RST_XDK_N (GPIO out) | SMC_RST_XDK_N |
-| PA9 | USART1_TX | KER_DBG_RXD |
-| PA10 | USART1_RX | KER_DBG_TXD |
-| PA2 | USART2_TX | SMC_DBG_RXD |
-| PA3 | USART2_RX | SMC_DBG_TXD |
-| GND | ground | GND |
+| Left header pin 1 / B12 (PB12) | SPI_SS_N (GPIO, manual chip select) | SPI_SS_N |
+| Left header pin 2 / B13 (PB13) | SPI2_SCK | SPI_CLK |
+| Left header pin 3 / B14 (PB14) | SPI2_MISO (input, internal pull-up) | SPI_MISO |
+| Left header pin 4 / B15 (PB15) | SPI2_MOSI | SPI_MOSI |
+| Right header pin 4 / B10 (PB10) | SMC_DBG_EN (GPIO out) | SMC_DBG_EN |
+| Right header pin 6 / B1 (PB1) | SMC_RST_XDK_N (GPIO out) | SMC_RST_XDK_N |
+| Left header pin 6 / A9 (PA9) | USART1_TX | KER_DBG_RXD |
+| Left header pin 7 / A10 (PA10) | USART1_RX | KER_DBG_TXD |
+| Right header pin 13 / A2 (PA2) | USART2_TX | SMC_DBG_RXD |
+| Right header pin 12 / A3 (PA3) | USART2_RX | SMC_DBG_TXD |
+| Left header pin 19 or right header pin 2 / GND | ground | GND |
 
-All signals are 3.3 V (the STM32 GPIOs used are 5 V-tolerant inputs, but the
-Xbox side is 3.3 V logic). PC13 is the activity LED (on-board, active low).
+All signals are 3.3 V; use 3.3 V logic on the Xbox side. PC13 is the activity
+LED (on-board, active low).
 
-The Xbox SPI bus is on **SPI2** on purpose: **SPI1 (PA4–PA7) is left free for
-the 8 MB W25Q64 flash chip mounted on this board revision.**
+The Xbox SPI bus uses **SPI2**. The V2.0 schematic separately shows an
+SPI-flash footprint (U3, `W25Q32JVSSIQ`) wired as PA4 (CS), PA5 (SCK), PA7
+(MOSI), and PB4 (MISO); the supplied board documents do not confirm a fitted
+chip or specify its capacity.
+
+### Board references
+
+- [DeepBlue Embedded: STM32F411 Black Pill board pinout, schematic, and datasheet](https://deepbluembedded.com/stm32f411-black-pill-board-pinout-schematic-datasheet/)
+- [STM32-Base: WeAct STM32F411CEU6 Black Pill V2.0](https://stm32-base.org/boards/STM32F411CEU6-WeAct-Black-Pill-V2.0.html)
+- [WeAct Studio: MiniSTM32F4x1 board source files](https://github.com/WeActStudio/WeActStudio.MiniSTM32F4x1/tree/master)
 
 ## Building
 
